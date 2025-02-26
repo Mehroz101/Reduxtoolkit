@@ -1,7 +1,7 @@
-import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchTodos } from "../features/todoSlice/TodoSlice";
 import { AppDispatch } from "../store/store";
+import { Button } from "@mui/material";
 interface TodoInterface {
   userId: number;
   id: number;
@@ -19,7 +19,9 @@ const Todos = () => {
   return (
     <div>
       <h1>TODOS</h1>
-      <button onClick={() => dispatch(fetchTodos())}>Fetch</button>
+      <Button variant="contained" onClick={() => dispatch(fetchTodos())}>
+        Fetch
+      </Button>
       {todos && todos.map((todo) => <h2>{todo.title}</h2>)}
     </div>
   );

@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { selectAllUsers } from "../features/addUserSlice/AddUserSlice";
 import { AddUserInterface } from "../types/type";
+import { Card, CardActionArea, Paper, Typography } from "@mui/material";
 
 const ShowUsers = () => {
   const users = useSelector(selectAllUsers);
@@ -8,23 +9,21 @@ const ShowUsers = () => {
   const renderUsers =
     users &&
     users.map((user: AddUserInterface) => (
-      <div
-        className="user"
-        key={user.userId}
-        style={{
-          border: "1px solid #999",
-          textAlign: "left",
-          padding: "10px",
-        }}
-      >
-        <h3>
-          {" "}
-          {user.firstname} {user.lastname}
-        </h3>
-        <p>Email: {user.email}</p>
-        <p>Age: {user.age}</p>
-        <p>Phone Number: {user.phone}</p>
-      </div>
+      <Card>
+        <CardActionArea>
+          <Paper elevation={23} sx={{ padding: "20px" }}>
+            <Typography variant="h5">
+              {user.firstname} {user.lastname}
+            </Typography>{" "}
+            {/* <p>Email: {user.email}</p> */}
+            <Typography variant="body2">{user.email}</Typography>
+            {/* <p>Age: {user.age}</p>
+            <p>Phone Number: {user.phone}</p> */}
+            <Typography variant="body2">{user.phone}</Typography>
+            <Typography variant="body2">{user.age}</Typography>
+          </Paper>
+        </CardActionArea>
+      </Card>
     ));
   return (
     <div>

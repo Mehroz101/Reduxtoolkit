@@ -2,7 +2,32 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { AddUserInterface } from "../types/type";
 import { useDispatch } from "react-redux";
 import { AddUser } from "../features/addUserSlice/AddUserSlice";
+import {
+  Button,
+  FormControl,
+  FormHelperText,
+  IconButton,
+  InputAdornment,
+  InputLabel,
+  MenuItem,
+  OutlinedInput,
+  TextField,
+} from "@mui/material";
+import { styled } from "@mui/material/styles";
+import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
+import VisibilityOffSharpIcon from "@mui/icons-material/VisibilityOffSharp";
+import { useState } from "react";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
+
+const StyledButton = styled(Button)({
+  padding: "32px",
+  backgroundColor: "hotpink",
+  fontSize: "24px",
+  borderRadius: "4px",
+});
+
 const AddNewUser = () => {
+  const [showPassword, setShowPassword] = useState<boolean>(false);
   const dispatch = useDispatch();
   const method = useForm<AddUserInterface>();
   const submitFunction: SubmitHandler<AddUserInterface> = (data) => {
@@ -16,64 +41,83 @@ const AddNewUser = () => {
           onSubmit={method.handleSubmit(submitFunction)}
           style={{ display: "flex", flexDirection: "column", gap: "10px" }}
         >
-          <input
-            style={{
-              padding: "10px",
-              borderRadius: "5px",
-              border: "1px solid #999",
-            }}
+          {/* <FormControl sx={{ m: 1 }} fullWidth variant="outlined">
+            <InputLabel htmlFor="outlined-adornment-password">
+              Password
+            </InputLabel>
+            <OutlinedInput
+              id="outlined-adornment-password"
+              type={showPassword ? "text" : "password"}
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label={
+                      showPassword
+                        ? "hide the password"
+                        : "display the password"
+                    }
+                    onClick={() => setShowPassword(!showPassword)}
+                    edge="end"
+                  >
+                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              }
+            />
+          </FormControl> */}
+          <TextField
+            required
+            id="outlined-required"
+            label="First Name"
             type="text"
+            defaultValue=""
             {...method.register("firstname", { required: true })}
-            placeholder="Enter Your First Name"
           />
-          <input
-            style={{
-              padding: "10px",
-              borderRadius: "5px",
-              border: "1px solid #999",
-            }}
+          <TextField
+            required
+            id="outlined-required"
+            label="Last Name"
             type="text"
+            defaultValue=""
             {...method.register("lastname", { required: true })}
-            placeholder="Enter Your Last Name"
           />
-          <input
-            style={{
-              padding: "10px",
-              borderRadius: "5px",
-              border: "1px solid #999",
-            }}
+          <TextField
+            required
+            id="outlined-required"
+            label="Email"
             type="email"
+            defaultValue=""
             {...method.register("email", { required: true })}
-            placeholder="Enter Your Email"
           />
-          <input
-            style={{
-              padding: "10px",
-              borderRadius: "5px",
-              border: "1px solid #999",
-            }}
+          <TextField
+            required
+            id="outlined-required"
+            label="Age"
             type="number"
+            defaultValue=""
             {...method.register("age", { required: true })}
-            placeholder="Enter Your Age"
           />
-          <input
-            style={{
-              padding: "10px",
-              borderRadius: "5px",
-              border: "1px solid #999",
-            }}
+          <TextField
+            required
+            id="outlined-required"
+            label="Phone Number"
             type="number"
+            defaultValue=""
             {...method.register("phone", { required: true })}
-            placeholder="Enter Your Phone Number"
           />
-          <input
-            style={{
-              padding: "10px",
-              borderRadius: "5px",
-              border: "1px solid #999",
-            }}
-            type="submit"
-          />
+          <TextField
+            select
+            id="outlined-required"
+            label="Gender"
+            type="text"
+            defaultValue="female"
+            {...method.register("gender", { required: true })}
+          >
+            <MenuItem value="male">Male</MenuItem>
+            <MenuItem value="female">Female</MenuItem>
+          </TextField>
+
+          <StyledButton type="submit">Submit</StyledButton>
         </form>
       </div>
     </div>

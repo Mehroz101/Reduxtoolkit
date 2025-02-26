@@ -5,4 +5,5 @@ export interface AddUserInterface {
   age: number;
   phone: number;
   userId: string;
+  gender?: string;
 }
