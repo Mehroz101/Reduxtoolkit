@@ -13,6 +13,9 @@ const Home = () => {
         <Link to={"/showusers"}>
           <h3>Show Users</h3>
         </Link>
+        <Link to={"/todos"}>
+          <h3>Show TODO</h3>
+        </Link>
       </div>
       <Outlet />
     </>
